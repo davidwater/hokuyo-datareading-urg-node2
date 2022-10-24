@@ -30,7 +30,7 @@ class ReadingLaserscan : public rclcpp::Node
 {
 public:
   VectorXd dist = VectorXd(1080);
-  VectorXd theta = VectorXd::LinSpaced(1080,0, 1.5*M_PI);
+  VectorXd theta = VectorXd::LinSpaced(1080,0, 1.5*M_PI); // 0 ~ 1.5*pi rad
   MatrixXd data = MatrixXd::Zero(1080,2);
 
 public:
@@ -52,13 +52,12 @@ private:
     }
     data.col(0)=dist;
     data.col(1)=theta;
-    std::cout << "Latest data: \n" << "distance (m) angle (rad) \n"<< data << std::endl;
+    std::cout << "     Latest data: \n" << "distance (m) angle (rad) \n"<< data << std::endl;
   }
   
 public: 
   MatrixXd get_data()
   {
-    std::cout << "Latest data: \n" << "distance (m) angle (rad) \n"<< data << std::endl;
     return data;
   }
 
