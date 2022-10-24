@@ -5,6 +5,7 @@ This document is mainly about how to retrieve data from the Hokuyo UST-20LX lase
 
 + OS: Ubuntu 20.04 LTS
 + ROS 2: Galactic
++ Create a ros2 workspace
 
 ## Raspberry Pi 3
 
