@@ -22,6 +22,8 @@ find_package(rclcpp_components REQUIRED)
 find_package(rclcpp_lifecycle REQUIRED)
 find_package(lifecycle_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
 find_package(diagnostic_updater REQUIRED)
 find_package(laser_proc REQUIRED)
 
@@ -42,8 +44,14 @@ add_library(urg_c SHARED
   ${URG_LIBRARY_SRC_DIR}/urg_tcpclient.c
 )
 
-add_executable(reading_laserscan src/subscriber_laserscan_function.cpp)
+add_executable(reading_laserscan src/laserscan_subscriber.cpp)
 ament_target_dependencies(reading_laserscan rclcpp sensor_msgs)
+
+add_executable(reading_point src/point_subscriber.cpp)
+ament_target_dependencies(reading_point rclcpp nav_msgs)
+
+add_executable(reading_quaternion src/quaternion_subscriber.cpp)
+ament_target_dependencies(reading_quaternion rclcpp nav_msgs)
 
 add_library(urg_node2 SHARED src/urg_node2.cpp)
 ament_target_dependencies(urg_node2 rclcpp rclcpp_components rclcpp_lifecycle lifecycle_msgs sensor_msgs diagnostic_updater laser_proc)
@@ -54,6 +62,16 @@ target_link_libraries(urg_node2 urg_c)
 
 install(TARGETS
   reading_laserscan
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+install(TARGETS
+  reading_point
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+install(TARGETS
+  reading_quaternion
   DESTINATION lib/${PROJECT_NAME}
 )
 
