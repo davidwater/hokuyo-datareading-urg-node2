@@ -16,7 +16,7 @@ $ git clone --recursive https://github.com/Hokuyo-aut/urg_node2.git
 1. Broadcast the laser's ethernet IP address to RPi 3
 ```
 $ sudo ip addr add 192.168.0.15/24 broadcast 192.168.1.255 dev eth0
-````
+```
 2. Under Ros 2 worksapce, run `rosdep` to check for missing dependencies before building
 ```
 $ rosdep install -i --from-path src --rosdistro galactic -y
@@ -47,5 +47,5 @@ $ . install/setup.bash
 ```
 $ ros2 run urg_node2 reading_laserscan 
 ```
-4. The range data and the corresponding angles of the latest scan will show on the terminal and be saved in a 1080*2 matrix 
+4. Click the enter button, the lidar will scan once and save into the CSV file 
 
