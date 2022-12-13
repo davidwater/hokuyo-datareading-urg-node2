@@ -47,5 +47,5 @@ $ . install/setup.bash
 ```
 $ ros2 run urg_node2 reading_laserscan 
 ```
-4. Click the enter button, the lidar will scan once and save into the CSV file 
+4. Click the enter button, the lidar will scan once and save the data into the CSV file, including the position of objects in the body frame, the distance data, and the corresponding angle data.
 
