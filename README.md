@@ -51,7 +51,7 @@ $ ros2 run laserscan_subscriber laserscan_subscriber
 
 ## Code explannation
 The [laserscan_subscriber](https://github.com/davidwater/hokuyo-datareading-urg-node2/blob/main/laserscan_subscriber/src/laserscan_subscriber.cpp) was created for subscribing the data from the laser. We used the [Eigen library](https://eigen.tuxfamily.org/index.php?title=Main_Page) to build the data structure. The data are saved as CSV file, the first col. is distance data, the second is angle data, the third and the fourth are calculated by the easy trigonometric function to put the (x,y) location.
-Function `topic_callback` specifys the way to we adopt.
+Function `topic_callback` specifys the way we adopt.
 ```
 void topic_callback(const sensor_msgs::msg::LaserScan::SharedPtr msg) {
         cout<<"IN CALLBACK!!!"<<endl;
