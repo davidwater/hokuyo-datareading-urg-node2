@@ -49,3 +49,38 @@ $ ros2 run laserscan_subscriber laserscan_subscriber
 ```
 4. Click the enter button, the lidar will scan once and save the data into the CSV file, including the position of objects in the body frame, the distance data, and the corresponding angle data.
 
+## Code explannation
+The [laserscan_subscriber](https://github.com/davidwater/hokuyo-datareading-urg-node2/blob/main/laserscan_subscriber/src/laserscan_subscriber.cpp) was created for subscribing the data from the laser. We used the [Eigen library](https://eigen.tuxfamily.org/index.php?title=Main_Page) to build the data structure. The data are saved as CSV file, the first col. is distance data, the second is angle data, the third and the fourth are calculated by the easy trigonometric function to put the (x,y) location.
+Function `topic_callback` specifys the way to we adopt.
+```
+void topic_callback(const sensor_msgs::msg::LaserScan::SharedPtr msg) {
+        cout<<"IN CALLBACK!!!"<<endl;
+        //int anmin = 440;
+        //int anmax = 640;
+        int rm = 0; // to remove on each side of scan (0.25deg per measure)
+        int anmin = rm;
+        int anmax = 1080-rm;
+        double div = 1.0; // multiply env for norm
+        // reset data
+        int j=0; // idx in data
+        data.conservativeResize(j,NoChange);
+        for (int i = anmin; i < anmax; i++) {
+            dist[i] = msg->ranges[i];
+            //if(dist[i]<=7 && dist[i]>=1){ // aritifcially limiting range
+                data.conservativeResize(j+1,NoChange); // resize mat
+                data(j,2) = dist[i]*div;  // set dist
+                data(j,3) = theta(i);
+                data(j,0) = data(j,2) * cos(theta(i)); // x
+                data(j,1) = data(j,2) * sin(theta(i)); // y
+                j++; // iterate
+            //}
+        }
+        Scan scan;
+        scan.data = data;
+        scan.loc =  Vector2d({0, 0});
+        scan.ori = 0;
+        scan.write_scan(n++);
+        cout << "*********************************************************" << endl;
+        cin.get();
+    }
+```
