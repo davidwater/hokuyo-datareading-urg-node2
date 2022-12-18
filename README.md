@@ -37,7 +37,7 @@ $ ros2 launch urg_node2 urg_node2.launch.py
 ## Desktop
 1. Under ROS 2 workspace, build the package
 ```
-$ colcon build --packages-select urg_node2
+$ colcon build --packages-select laserscan_subscriber
 ```
 2. Source the setup files
 ```
@@ -45,7 +45,7 @@ $ . install/setup.bash
 ```
 3. Activate the node and collect the data from RPi 3
 ```
-$ ros2 run urg_node2 reading_laserscan 
+$ ros2 run laserscan_subscriber laserscan_subscriber 
 ```
 4. Click the enter button, the lidar will scan once and save the data into the CSV file, including the position of objects in the body frame, the distance data, and the corresponding angle data.
 
