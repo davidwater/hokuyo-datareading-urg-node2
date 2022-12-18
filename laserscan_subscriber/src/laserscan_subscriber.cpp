@@ -19,7 +19,7 @@ class Scan {
   // Matrix<double, Dynamic, 2> pts, mes;
 public:
   Matrix<double, Dynamic, 4> data; // x, y, d, an
-  Vector<double, 2> loc;
+  Vector2d loc;
   double ori;
   void write_scan(int n) {
     ofstream f("scan_" + to_string(n) + ".csv");
@@ -57,7 +57,7 @@ private:
         int rm = 0; // to remove on each side of scan (0.25deg per measure)
         int anmin = rm;
         int anmax = 1080-rm;
-        double div = 3.0; // multiply env for norm
+        double div = 1.0; // multiply env for norm
         // reset data
         int j=0; // idx in data
         data.conservativeResize(j,NoChange);
@@ -73,7 +73,7 @@ private:
             //}
         }
         Scan scan;
-        scan.data = data(all, all);
+        scan.data = data;
         scan.loc =  Vector2d({0, 0});
         scan.ori = 0;
         scan.write_scan(n++);
