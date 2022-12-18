@@ -50,7 +50,7 @@ $ ros2 run laserscan_subscriber laserscan_subscriber
 4. Click the enter button, the lidar will scan once and save the data into the CSV file, including the position of objects in the body frame, the distance data, and the corresponding angle data.
 
 ## Code explannation
-The [laserscan_subscriber.cpp](https://github.com/davidwater/hokuyo-datareading-urg-node2/blob/main/laserscan_subscriber/src/laserscan_subscriber.cpp) was created for subscribing the data from the laser. We used the [Eigen library](https://eigen.tuxfamily.org/index.php?title=Main_Page) to build the data structure. The data are saved as CSV file, the first col. is distance data, the second is angle data, the third and the fourth are calculated by the easy trigonometric function to put the (x,y) location.
+The [laserscan_subscriber.cpp](https://github.com/davidwater/hokuyo-datareading-urg-node2/blob/main/laserscan_subscriber/src/laserscan_subscriber.cpp) was created for subscribing the data from the laser. We used the [Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page) library to build the data structure. The data are saved as CSV file, the first col. is distance data, the second is angle data, the third and the fourth are calculated by the easy trigonometric function to put the (x,y) location.
 Function `topic_callback` specifys the way we adopt.
 ```
 void topic_callback(const sensor_msgs::msg::LaserScan::SharedPtr msg) {
