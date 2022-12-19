@@ -13,6 +13,11 @@ $ git clone --recursive https://github.com/Hokuyo-aut/urg_node2.git
 ```
 
 ## Raspberry Pi 3
+After the RPi 3 is powered on, type the login information as following,
+```
+username: ubuntu
+password: david1234
+```
 1. Broadcast the laser's ethernet IP address to RPi 3
 ```
 $ sudo ip addr add 192.168.0.15/24 broadcast 192.168.1.255 dev eth0
